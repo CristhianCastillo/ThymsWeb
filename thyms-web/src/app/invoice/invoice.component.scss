@@ -1,16 +1,22 @@
 .mygrid-wrapper-div {
   overflow-y: scroll;
-  height: 700px;
+  height: 355px;
 }
 
 table {
   width: 100%;
 }
 
+
 .seleccionado {
-  background-color: cornflowerblue;
+  background-color: #E7E3E2;
 }
 
+.titulo-columnas {
+  font-size: medium;
+  color: black;
+  font-weight: bolder;
+}
 
 .datatable-header {
   background: rgba(164, 192, 214,1);

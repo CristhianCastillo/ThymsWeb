@@ -12,6 +12,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
+import { MatPaginatorModule} from '@angular/material';
+import {CustomMatPaginatorIntl} from './matPaginationIntlService';
+import { MatPaginatorIntl } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,10 @@ import { DemoMaterialModule } from './material-module';
     BrowserAnimationsModule,
     DemoMaterialModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

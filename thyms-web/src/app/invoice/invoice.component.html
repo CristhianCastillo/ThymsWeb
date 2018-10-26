@@ -1,7 +1,9 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-2">
-      Racks
+    <div class="col-2" id="panel-izquierda">
+      <div style="text-align: center">
+        <h5><span class="badge badge-primary">Racks</span></h5>
+      </div>
       <div class="mygrid-wrapper-div">
         <div class="list-group" *ngFor="let rack of racks">
           <button type="button" class="list-group-item list-group-item-action" (click)="cambiarRackSeleccionado(rack.id)"
@@ -9,9 +11,11 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-8" id="panel-centro">
       <div style="text-align: center">
-        <strong>Rack Seleccionado:</strong> {{rackSeleccionado}} - <strong>Factura Seleccionada:</strong> {{facturaSeleccionada}}
+        <h6>
+          <strong>Rack Seleccionado:</strong> {{rackSeleccionado}} - <strong> Factura Seleccionada:</strong> {{facturaSeleccionada}}
+        </h6>
       </div>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
@@ -27,13 +31,13 @@
 
           <!-- Position Column -->
           <ng-container matColumnDef="referencia">
-            <th mat-header-cell *matHeaderCellDef> Referencia </th>
+            <th mat-header-cell *matHeaderCellDef class="titulo-columnas"> Referencia </th>
             <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
           </ng-container>
 
           <!-- Name Column -->
           <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <th mat-header-cell *matHeaderCellDef class="titulo-columnas"> Descripción </th>
             <td mat-cell *matCellDef="let element" >
               <label *ngIf="!element.enlistado; else enlistado">{{element.descripcion}}</label>
               <ng-template #enlistado>
@@ -44,7 +48,7 @@
 
           <!-- Weight Column -->
           <ng-container matColumnDef="cantidad">
-            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <th mat-header-cell *matHeaderCellDef class="titulo-columnas"> Cantidad </th>
             <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
           </ng-container>
 
@@ -59,14 +63,18 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{seleccionado: row.enlistado}" (click)="obtenerFilaSeleccionada(row);"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{seleccionado: row.enlistado}"
+              [ngStyle]="{'background-color': row.id === registroSeleccionado ? '#FAF420' : null }"
+              (click)="obtenerFilaSeleccionada(row);"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
-    <div class="col-2">
-      Facturas
+    <div class="col-2" id="panel-derecha">
+      <div style="text-align: center">
+        <h5><span class="badge badge-success">Facturas</span></h5>
+      </div>
       <div class="mygrid-wrapper-div">
         <div class="list-group" *ngFor="let factura of facturas">
           <button type="button" class="list-group-item list-group-item-action" [ngStyle]="{'background-color': factura.id === facturaSeleccionada ? '#32db64' : null }" (click)="cambiarFacturaSeleccionada(factura.id)">

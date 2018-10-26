@@ -133,6 +133,7 @@ export class InvoiceComponent implements OnInit {
 
   public rackSeleccionado: string;
   public facturaSeleccionada: string;
+  public registroSeleccionado: string;
   public rows: any;
   public racks: any = [
     { id: 'Rack 1'},
@@ -222,6 +223,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   obtenerFilaSeleccionada(row) {
+    this.registroSeleccionado = row.id;
     console.log(row);
   }
 
